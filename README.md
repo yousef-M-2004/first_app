@@ -1,28 +1,156 @@
-# Aswan Tourism Guide 🏛️🌊
+# 🌍 Aswan Explorer
 
-A digital platform designed to help visitors explore the historical landmarks, cultural heritage, and local experiences in **Aswan, Egypt**. This application provides a comprehensive guide to "The Jewel of the Nile," connecting tourists with destinations and local experts.
-
-## 🚀 Project Overview
-This repository contains the backend structure and database schema for an Aswan tourism application. The app allows users to discover locations, view detailed logistical information, connect with local guides, and share their experiences through reviews and media.
-
-## 📊 Database Schema
-The database is built on a relational structure as illustrated in the project documentation. Below is an overview of the core tables:
-
-| Table | Description |
-| :--- | :--- |
-| **`places`** | The primary directory of landmarks, including names, categories, and overall ratings. |
-| **`place_info`** | Extended data for locations including address, contact info, website, and opening hours. |
-| **`users`** | User profile management, authentication (email/password), and role assignment. |
-| **`locals`** | Profiles of local guides and experts, featuring their experience level and ratings. |
-| **`media`** | A gallery system for photos and captions linked to specific tourist locations. |
-| **`reviews`** | Community feedback system where users can rate and comment on places and guides. |
-
-## ✨ Key Features
-- **Dynamic Discovery**: Filter and search through Aswan's famous temples, islands, and markets.
-- **Local Expertise**: A dedicated system to find and verify experienced local guides.
-- **Interactive Gallery**: High-quality visual content for every listed destination.
-- **Trusted Reviews**: A rating system to ensure quality and reliability for future travelers.
-
+Discover the beauty of Aswan through local experiences, hidden gems, and trending tourist destinations.
 
 ---
-*Created as part of the Aswan Digital Transformation Initiative.*
+
+## 📖 Overview
+
+**Aswan Explorer** is a tourism and local discovery platform designed to help tourists navigate and explore the most beautiful places in Aswan, Egypt.  
+The app connects visitors with trusted locals, trending spots, restaurants, cafes, historical places, and hidden gems around the city.
+
+Tourists can:
+- Discover famous and hidden tourism attractions
+- Find trusted local guides and helpers
+- View trending places and top-rated locals
+- Rate and review locations and services
+- Share their own experiences with others
+
+The platform aims to make tourism in Aswan easier, safer, and more interactive.
+
+---
+
+# ✨ Features
+
+## 📍 Discover Places
+Explore:
+- Historical monuments
+- Nile viewpoints
+- Islands and natural spots
+- Restaurants & cafes
+- Hotels & resorts
+- Local markets
+- Hidden gems recommended by locals
+
+---
+
+## 👥 Local Helpers
+Tourists can connect with trusted locals who can:
+- Recommend places to visit
+- Help tourists discover authentic experiences
+- Guide tourists around Aswan
+- Share cultural insights and local tips
+
+Each local helper has:
+- Profile information
+- Ratings
+- Reviews
+- Experience details
+
+---
+
+## 🔥 Trending System
+The app highlights:
+- Trending tourism places
+- Most visited locations
+- Top-rated locals
+- Popular cafes and restaurants
+- Seasonal hotspots
+
+---
+
+## ⭐ Ratings & Reviews
+Users can:
+- Rate places from 1–5 stars
+- Write detailed reviews
+- Upload photos
+- Share recommendations
+
+This helps tourists make better decisions before visiting places.
+
+---
+
+# 🛠️ Tech Stack
+
+## Frontend
+- flutter
+
+## Backend
+- Node.js
+- Express.js
+
+## Database
+- SQL server 
+
+## Authentication
+- Firebase Auth / JWT
+
+## Cloud & Storage
+- locally
+
+---
+
+# 📱 Screens
+
+- Home Page
+- Trending Places
+- Place Details
+- Local Helper Profiles
+- Reviews & Ratings
+- Interactive Map
+- Favorites Page
+
+---
+
+# 🚀 Future Features
+
+- AI tourism recommendations
+- Real-time tourism events
+- Multi-language support
+- Travel itinerary planner
+- Hotel and boat booking
+- Offline maps
+- Emergency tourist support
+
+---
+
+# 🎯 Project Goal
+
+The goal of **Aswan Explorer** is to improve tourism in Aswan by combining:
+- Technology
+- Local community support
+- Tourism discovery
+- Social interaction
+
+The app helps tourists experience Aswan like locals.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Push your branch
+5. Open a Pull Request
+
+---
+
+# 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 📬 Contact
+
+For suggestions or collaboration:
+
+- Email: y.abdalla2611@gmail.com
+- GitHub: https://github.com/yousef-M-2004/first_app
+
+---
+
+# 🇪🇬 Made with love for Aswan
