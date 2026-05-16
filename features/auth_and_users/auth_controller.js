@@ -1,6 +1,7 @@
 //sign up function 
 
 const bcrypt = require("bcrypt");
+// testing user and to be replaced with datdbase 
 const users = [ {               first_name: 'ahmed',
     last_name: 'hello',
     phone_number: '012544',
