@@ -4,7 +4,8 @@ const bcrypt = require ('bcrypt');
 router.use(express.json());
 const {sign_up , users,login} = require("./auth_controller.js");
 
-//const auth = require("/auth_middleware.js");
+const {jwt_auth} = require("./auth_middleware.js");
+//jwt_auth = auth.jwt_auth ;
 //home page
 router.get("/",(req,res)=>{
     res.send("home page")
@@ -28,6 +29,13 @@ router.post("/sign_up", sign_up ,async (req,res)=>{
     console.log (users);
 })
 
+// profile 
+router.get("/profile", jwt_auth , async (req,res , next)=>{  // use the jwt auth function from middlle ware
+
+    res.send(req.user);
+})
+
 module.exports = {
     router,
+    jwt_auth
 };
