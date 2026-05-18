@@ -1,0 +1,4 @@
+frist run the main database scripts in the bronze folder.
+then run the sql file in this directory.
+then save the .env file as will as the db.js file and the server 
+lastly run the server via the terminal.
