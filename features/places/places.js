@@ -59,7 +59,7 @@ app.get('/places/:id', (req, res) => {
 });
 
 
-app.post('/places', (req, res) => {
+app.post('/places', (req, res) => {              //only admin function
 
   const new_place = {
 
@@ -101,7 +101,7 @@ res.json({
 });
 
 
-app.delete('/places/:id', (req, res) => {
+app.delete('/places/:id', (req, res) => {                     // only admin function
 
   const id = req.params.id;
 
