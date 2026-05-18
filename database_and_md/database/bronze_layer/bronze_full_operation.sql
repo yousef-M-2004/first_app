@@ -54,10 +54,12 @@ DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @b
 			CREATE TABLE bronze.users (
 				user_id INT IDENTITY(1,1) PRIMARY KEY,
 				user_email NVARCHAR (255) UNIQUE NOT NULL,
-				user_role NVARCHAR (55),
-				user_password NVARCHAR (255) NOT NULL,
-				first_name NVARCHAR (50),
-				last_name NVARCHAR (50),
+				user_role NVARCHAR (55) NOT NULL
+						CHECK (user_role IN ('Admin', 'User')),
+				user_password NVARCHAR (255) NOT NULL 
+						CHECK (LEN(user_password) > 8),
+				first_name NVARCHAR (50) NOT NULL,
+				last_name NVARCHAR (50) NOT NULL,
 				phone_number NVARCHAR(15) ,
 				profile_picture VARBINARY(MAX),
 				user_create_date DATETIME2 DEFAULT GETDATE()
@@ -85,11 +87,12 @@ DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @b
 			BEGIN
 			CREATE TABLE bronze.places (
 				place_id INT IDENTITY(1,1) PRIMARY KEY,
-				place_name NVARCHAR (70),
-				place_type NVARCHAR (50),
+				place_name NVARCHAR (70) NOT NULL,
+				place_type NVARCHAR (50) NOT NULL,
 				rateing DECIMAL(3, 2),
-				discrption NVARCHAR (MAX) ,
-				phone_number NVARCHAR(15) ,
+				discrption NVARCHAR (MAX) 
+						CHECK (LEN(discrption) > 10),
+				phone_number NVARCHAR(15) NOT NULL,
 				website_url NVARCHAR (MAX),
 				opening_hours NVARCHAR (55),
 				place_location NVARCHAR (MAX)
@@ -115,14 +118,30 @@ DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @b
 			PRINT '>> treating reviwes table <<';
 			IF OBJECT_ID ('bronze.reviwes', 'U') IS NULL
 			BEGIN
-			CREATE TABLE bronze.reviwes (
-				reviwe_id INT IDENTITY(1,1) PRIMARY KEY,
-				place_id INT,
-				local_id INT,
-				rateing DECIMAL(3, 2),
-				reviwe_text NVARCHAR (MAX),
-				reviwe_date DATETIME2 DEFAULT GETDATE()
-				);
+			CREATE TABLE bronze.reviews (
+				review_id INT IDENTITY(1,1) PRIMARY KEY,
+
+				place_id INT NULL,
+				local_id INT NULL,
+
+				review_text NVARCHAR(MAX) NOT NULL,
+				review_date DATETIME2 DEFAULT GETDATE(),
+
+				CONSTRAINT FK_reviews_places
+					FOREIGN KEY (place_id)
+					REFERENCES bronze.places(place_id),
+
+				CONSTRAINT FK_reviews_locals
+					FOREIGN KEY (local_id)
+					REFERENCES bronze.locals(local_id),
+
+				CONSTRAINT CHK_only_one_target
+					CHECK (
+						(place_id IS NOT NULL AND local_id IS NULL)
+						OR
+						(place_id IS NULL AND local_id IS NOT NULL)
+					)
+			);
 			END 
 					BULK INSERT bronze.reviwes 
 					FROM 'D:\projects\toursim app\database\reviwes.csv'
@@ -145,11 +164,12 @@ DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @b
 			BEGIN
 			CREATE TABLE bronze.locals (
 				local_id INT IDENTITY(1,1) PRIMARY KEY,
-				first_name NVARCHAR (50),
-				last_name NVARCHAR (50),
-				rateing DECIMAL(3, 2),
+				first_name NVARCHAR (50) NOT NULL,
+				last_name NVARCHAR (50) NOT NULL,
+				rating DECIMAL(3, 2),
 				years_experience INT,
-				discrption NVARCHAR (MAX) ,
+				discrption NVARCHAR (MAX) 
+						CHECK (LEN(discrption) > 10),
 				local_photo VARBINARY(MAX)
 				);
 			END 
@@ -175,7 +195,7 @@ DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @b
 			BEGIN
 			CREATE TABLE bronze.media (
 				photo_id INT IDENTITY(1,1) PRIMARY KEY,
-				place_id INT,
+				place_id INT NOT NULL,
 				photo_url NVARCHAR (MAX),
 				caption NVARCHAR (MAX)
 				);
@@ -210,4 +230,5 @@ BEGIN CATCH
 		PRINT 'Error Message' + CAST (ERROR_STATE() AS NVARCHAR);
 		PRINT '=========================================='
 END CATCH
+
 
