@@ -31,7 +31,8 @@ const sign_up= async (req,res)=> {
                   
                  email : req.body.email,
                 
-                 role : "user" ,
+                 role : "admin" ,
+                 
                 password : hashed_password
             }
         )
@@ -57,11 +58,13 @@ const login = async (req,res)=>{
        
         const e_user =users.find((user)=> user.email === email );
         if (!e_user ){
-            res.status(400).send("not there u may want to sign_up first")//.redirect
+            res.status(400).send("not there u may want to sign_up first")//.redirect to sign up 
         }else if (e_user){
            const is_match = await bcrypt.compare (unh_password,e_user.password );
            if(is_match){
-                 const access_token = jwt_web_token.sign({email :email},process.env.ACCESS_TOKEN,{expiresIn : "1m"});
+                 const access_token = jwt_web_token.sign({email :email,
+                    role : "admin"}
+                 ,process.env.ACCESS_TOKEN,{expiresIn : "30m"});
                  const refresh_token = jwt_web_token.sign({email :email},process.env.REFRESH_TOKEN,{expiresIn : "1m"});
 
             
